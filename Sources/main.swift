@@ -1,5 +1,5 @@
 import Fluent
-import SQLiteDriver
+import FluentSQLite
 
 Database.driver = SQLiteDriver()
 
