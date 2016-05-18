@@ -1,11 +1,23 @@
 import Fluent
 import FluentSQLite
 
-Database.driver = SQLiteDriver()
+do {
+    let driver = try SQLiteDriver()
+    Database.default = Database(driver: driver)
+} catch {
+    print("Could not initialize driver: \(error)")
+}
 
-if let user = User.find(1) {
-	print(user.name)
+do {
+    if var user = try User.find(1) {
+        print(user.name)
 
-	user.name = "Test"
-	user.save()
+        //increments the user's name with every run
+        let count = Int(user.name) ?? 0
+        user.name = "\(count + 1)"
+
+        try user.save()
+    }
+} catch {
+    print("Could not modify user: \(error)")
 }

@@ -1,14 +1,14 @@
 import Fluent
 
 class User: Model {
-	var id: String?
+	var id: Value?
 	var name: String
 
 	init(name: String, email: String) {
 		self.name = name
 	}
 
-	func serialize() -> [String: String] {
+	func serialize() -> [String: Value?] {
 		return [
 			"name": self.name,
 		]
@@ -18,9 +18,9 @@ class User: Model {
 		return "users"
 	}
 
-	required init(serialized: [String: String]) {
-		self.id = serialized["id"]
-		self.name = serialized["name"] ?? ""
+	required init(serialized: [String: Value]) {
+		id = serialized["id"]
+		name = serialized["name"]?.string ?? ""
 	}
 
 }
