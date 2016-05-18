@@ -4,6 +4,16 @@ import FluentSQLite
 do {
     let driver = try SQLiteDriver()
     Database.default = Database(driver: driver)
+
+    let results = try driver.raw("SELECT sqlite_version();")
+
+    if
+        let row = results.first,
+        let version = row["sqlite_version()"]?.string
+    {
+        print("SQLite Version: \(version)")
+    }
+
 } catch {
     print("Could not initialize driver: \(error)")
 }
