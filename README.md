@@ -8,10 +8,16 @@ Swift 2.2 or later is required.
 
 ## Example Table
 
+SQLite file is here.
+
+```bash
+sqlite3 Database/main.sqlite
+```
+
 Run the following SQL query to set up the example table.
 
 ```sql
-CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL)
+CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL);
 ```
 
 Works on Ubuntu.
