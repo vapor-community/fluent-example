@@ -1,7 +1,6 @@
 # Fluent Example
 
-0. Make sure to have `sqlite3` installed (see **Install SQLite** bellow)
-1. Read through the Example Table section below to setup the sample database
+1. Make sure to have `sqlite3` installed (see **Install SQLite** bellow)
 2. Run `swift package update` to download dependencies
 3. Run `swift build` to build the example application
 4. Execute the program `.build/debug/FluentApp`
