@@ -18,6 +18,28 @@ do {
     print("Could not initialize driver: \(error)")
 }
 
+// Database preparation code from <https://github.com/vapor/fluent-provider/blob/master/Sources/Prepare.swift#L49-L62>
+
+let preparations: [Preparation.Type] = [User.self]
+if let database = Database.default {
+  do {
+      try preparations.forEach { preparation in
+          let name = "\(preparation.self)"
+
+          let hasPrepared = try database.hasPrepared(preparation)
+          // only prepare the unprepared
+          guard !hasPrepared else { return }
+          print("Preparing \(name)")
+          try database.prepare(preparation)
+          print("Prepared \(name)")
+      }
+  } catch {
+      print("Could not modify user: \(error)")
+  }
+
+  print("Database prepared")
+}
+
 do {
     if var user = try User.find(1) {
         print(user.name)
